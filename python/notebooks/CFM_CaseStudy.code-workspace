@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../BigDProject/CFM_CaseStudy"
+		},
+		{
+			"path": "../.."
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
+}

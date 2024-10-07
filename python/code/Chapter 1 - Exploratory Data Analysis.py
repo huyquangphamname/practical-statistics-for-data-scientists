@@ -123,7 +123,7 @@ plt.show()
 ### Density Estimates
 # Density is an alternative to histograms that can provide more insight into the distribution of the data points. Use the argument `bw_method` to control the smoothness of the density curve.
 
-ax = state['Murder.Rate'].plot.hist(density=True, xlim=[0, 12], 
+ax = state['Murder.Rate'].plot.hist(density=True, xlim=[0, 12],
                                     bins=range(1,12), figsize=(4, 4))
 state['Murder.Rate'].plot.density(ax=ax)
 ax.set_xlabel('Murder Rate (per 100,000)')
@@ -163,14 +163,14 @@ print(telecom)
 
 # Next we focus on funds traded on major exchanges (sector == 'etf').
 
-etfs = sp500_px.loc[sp500_px.index > '2012-07-01', 
+etfs = sp500_px.loc[sp500_px.index > '2012-07-01',
                     sp500_sym[sp500_sym['sector'] == 'etf']['symbol']]
 print(etfs.head())
 
 # Due to the large number of columns in this table, looking at the correlation matrix is cumbersome and it's more convenient to plot the correlation as a heatmap. The _seaborn_ package provides a convenient implementation for heatmaps.
 
 fig, ax = plt.subplots(figsize=(5, 4))
-ax = sns.heatmap(etfs.corr(), vmin=-1, vmax=1, 
+ax = sns.heatmap(etfs.corr(), vmin=-1, vmax=1,
                  cmap=sns.diverging_palette(20, 220, as_cmap=True),
                  ax=ax)
 
@@ -244,12 +244,12 @@ print(ax.axvline(0, color='grey', lw=1))
 # Load the kc_tax dataset and filter based on a variety of criteria
 
 kc_tax = pd.read_csv(KC_TAX_CSV)
-kc_tax0 = kc_tax.loc[(kc_tax.TaxAssessedValue < 750000) & 
+kc_tax0 = kc_tax.loc[(kc_tax.TaxAssessedValue < 750000) &
                      (kc_tax.SqFtTotLiving > 100) &
                      (kc_tax.SqFtTotLiving < 3500), :]
 print(kc_tax0.shape)
 
-### Hexagonal binning and Contours 
+### Hexagonal binning and Contours
 #### Plotting numeric versus numeric data
 
 # If the number of data points gets large, scatter plots will no longer be meaningful. Here methods that visualize densities are more useful. The `hexbin` method for _pandas_ data frames is one powerful approach.
@@ -278,7 +278,7 @@ plt.show()
 lc_loans = pd.read_csv(LC_LOANS_CSV)
 
 # Table 1-8(1)
-crosstab = lc_loans.pivot_table(index='grade', columns='status', 
+crosstab = lc_loans.pivot_table(index='grade', columns='status',
                                 aggfunc=lambda x: len(x), margins=True)
 print(crosstab)
 
@@ -325,7 +325,7 @@ def hexbin(x, y, color, **kwargs):
     plt.hexbin(x, y, gridsize=25, cmap=cmap, **kwargs)
 
 g = sns.FacetGrid(kc_tax_zip, col='ZipCode', col_wrap=2)
-g.map(hexbin, 'SqFtTotLiving', 'TaxAssessedValue', 
+g.map(hexbin, 'SqFtTotLiving', 'TaxAssessedValue',
       extent=[0, 3500, 0, 700000])
 g.set_axis_labels('Finished Square Feet', 'Tax Assessed Value')
 g.set_titles('Zip code {col_name:.0f}')
